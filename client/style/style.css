@@ -17,6 +17,7 @@ body {
 
 .row {
   height: 100%;
+  margin: auto !important;
 }
 .home-holder {
   background: white;
