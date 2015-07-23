@@ -26,6 +26,9 @@ body {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
+.home-holder h1 {
+  text-align: center;
+}
 form {
   text-align: center;
 }
