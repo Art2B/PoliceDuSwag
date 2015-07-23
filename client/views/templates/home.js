@@ -19,10 +19,17 @@ Template.home.events({
     // Send Police du Swag
     if(isUrlValid){
       // send police du swag
-      Meteor.call('sendSwagPolice', url);
+      Meteor.call('sendSwagPolice', url, function(err, result){
+        if(err){
+          Session.set('formMessage', 'La Police du Swag a des problèmes plus important à règler pour le moment. Merci de réessayer plus tard.');
+        } else {
+          Session.set('formMessage', 'La Police du Swag est en cours d\'intervention');
+        }
+      });
     } else {
-      Session.set('formMessage', 'Your url is invalid');
+      Session.set('formMessage', 'Ceci n\'est pas une adresse où la Police du Swag peut intervenir');
     }
+
     // Prevent form from submit
     return false;
   }

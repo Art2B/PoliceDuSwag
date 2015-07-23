@@ -1,9 +1,16 @@
 <template name="home">
-  <h1>Home template</h1>
+  <div class="row">
+    <div class="col s6 offset-s3 home-holder">
+      <h1>La Police du Swag</h1>
+      <p>Un problème sur le Twitter des Internets ? On t'insulte, t'arrives plus à gérer, c'est le Far West ? On est la pour ça.<br>
+        Balance l'url du tweet, et nous, la Police du Swag, pouvoir executif le plus stylé des réseaux informatiques, on s'occupe de tout.</p>
+      <p>Veni Vedi Vici comme il disait.</p>
 
-  <form class="swag-form">
-    <input type="text" name="url" placeholder="url">
-    <input type="submit" value="Send the Police du Swag">
-    <p>{{formMessage}}</p>
-  </form>
+      <form class="swag-form">
+        <input type="text" name="url" placeholder="url">
+        <input type="submit" class="red darken-2 btn" value="Envoyer la Police du Swag">
+        <p>{{formMessage}}</p>
+      </form>
+    </div>
+  </div>
 </template>

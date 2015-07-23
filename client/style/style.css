@@ -1,1 +1,36 @@
 /* CSS declarations go here */
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-image: url('/img/bg.jpeg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.row {
+  height: 100%;
+}
+.home-holder {
+  background: white;
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+form {
+  text-align: center;
+}
+form p {
+  text-align: center;
+  padding: 0 0 20px;
+  min-height: 26px;
+}

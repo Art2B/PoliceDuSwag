@@ -1,4 +1,5 @@
 var Twit = Meteor.npmRequire('twit');
+var Future = Meteor.npmRequire('fibers/future');
 var T = {};
 
 Meteor.startup(function () {
@@ -9,12 +10,12 @@ Meteor.startup(function () {
     , access_token: Meteor.settings.twit.access_token
     , access_token_secret: Meteor.settings.twit.access_token_secret
   });
-
-  // Meteor.call('sendSwagPolice', 'https://twitter.com/abattut/status/615227218898370560');
 });
 
 Meteor.methods({
   sendSwagPolice: function(url){
+    var fut = new Future();
+
     check(url, String);
     var tweetIdReg = /status\/(\d+)/;
     var tweetId = tweetIdReg.exec(url)[1];
@@ -31,16 +32,20 @@ Meteor.methods({
       });
       message += ' #PoliceDuSwag ! Personne ne bouge !';
       if(message.length <= 140){
-        console.log('c good');
         T.post('/statuses/update',
           {status: message, in_reply_to_status_id: data.id_str},
           function(err, data, response){
-            console.log('tweet send');
+            if(err){
+              return fut.throw(new Meteor.Error('tweet-not-send', 'there hasn\'t been send'));
+            }
+            return fut.return({tweetSend: true});
           }
         )
       } else {
-        // Need to return error
+        // error here
+        return fut.throw(new Meteor.Error('tweet-too-long', 'the tweet is too long'));
       }
     });
+    fut.wait();
   }
 });
